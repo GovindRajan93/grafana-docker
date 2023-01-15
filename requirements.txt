@@ -1,0 +1,3 @@
+selenium
+pymsteams
+slack_sdk

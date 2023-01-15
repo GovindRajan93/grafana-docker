@@ -1,0 +1,26 @@
+#Install OS dependencies, Browsers & python modules
+FROM registry.access.redhat.com/ubi8/python-36
+
+COPY requirements.txt /tmp/
+COPY install-browsers.sh /tmp/
+
+# Install dependencies
+RUN yum install xz atk cups-libs gtk3 libXcomposite alsa-lib tar \
+    libXcursor libXdamage libXext libXi libXrandr libXScrnSaver \
+    libXtst pango at-spi2-atk libXt xorg-x11-server-Xvfb \
+    xorg-x11-xauth dbus-glib dbus-glib-devel unzip bzip2 -y -q
+
+# Install Browsers
+RUN curl -SL https://github.com/mozilla/geckodriver/releases/tag/v0.32.0/geckodriver-v0.32.0-linux64.tar.gz > geckodriver.tar.gz
+RUN tar -xvf geckodriver.tar.gz -C /opt/
+RUN chmod +x /opt/geckodriver
+RUN rm -f geckodriver.tar.gz
+
+RUN curl -SL https://ftp.mozilla.org/pub/firefox/releases/102.6.0esr/linux-x86_64/en-US/firefox-102.6.0esr.tar.bz2 > Firefoxsetup.tar.bz2
+RUN tar -xvf Firefoxsetup.tar.bz2 -C /opt/
+RUN chmod +x /opt/firefox/firefox
+RUN rm -f Firefoxsetup.tar.bz2
+
+# Install Python dependencies for function
+RUN pip install --upgrade pip -q
+RUN pip install -r /tmp/requirements.txt -q
