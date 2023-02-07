@@ -6,7 +6,7 @@ import datetime
 import slack
 from time import sleep
 from slack_sdk import WebClient
-slack_token='xoxp-1181418301266-1187598082196-4620796761302-88c7e6294d5af8b8a5a2afa3eb5e0964'
+slack_token=''
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
@@ -21,9 +21,9 @@ def portal_login():
     print("Trying to login Azure Portal....")
     driver.get('https://portal.azure.com')
     driver.fullscreen_window()
-    WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "//input[@id='i0116']"))).send_keys("govindarajan.r@soprasteria.com")
+    WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "//input[@id='i0116']"))).send_keys("")
     WebDriverWait(driver, 5).until(EC.element_to_be_clickable((By.XPATH, "//input[@id='idSIButton9']"))).click()
-    WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "//input[@id='passwordInput']"))).send_keys("Sugan@05121995")
+    WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "//input[@id='passwordInput']"))).send_keys("")
     WebDriverWait(driver, 1).until(EC.element_to_be_clickable((By.XPATH, "//span[@id='submitButton']"))).click()
     WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, '//input[@id="idSIButton9"]'))).click()
     print("Logged into Azure Portal successfully....")
@@ -61,7 +61,7 @@ def dashboard_capture():
     #Slack Notification
     print("Proceeding to post the alert in slack")
     upload_file = client.files_upload(
-      channels="C015BJER803",
+      channels="",
       title=f'Azure Dashboards',
       file=f'/home/ansibleuser/grafana-docker/azure-dashboards-%s.png' % now,
       initial_comment=f'Please find the attached Azure Dashboard Report',)
@@ -79,10 +79,10 @@ def dashboard_capture():
 
     #Create the client
     from azure.storage.fileshare import ShareServiceClient
-    service = ShareServiceClient(account_url="https://azurelearning24.file.core.windows.net/", credential="oScn4oTAR6DVyCzo5zJxX1MZJXZ+pAqawLaebD1NFI6x2HU5l7BRgyxN6DIIrtVMMH/F6B6hfukF+ASt+skywA==")
+    service = ShareServiceClient(account_url="https://azurelearning24.file.core.windows.net/", credential="")
     
     #Create the Connection String
-    connection_string = "DefaultEndpointsProtocol=https;AccountName=azurelearning24;AccountKey=oScn4oTAR6DVyCzo5zJxX1MZJXZ+pAqawLaebD1NFI6x2HU5l7BRgyxN6DIIrtVMMH/F6B6hfukF+ASt+skywA==;EndpointSuffix=core.windows.net"
+    connection_string = "DefaultEndpointsProtocol=https;AccountName=azurelearning24;AccountKey=;EndpointSuffix=core.windows.net"
     service = ShareServiceClient.from_connection_string(conn_str=connection_string, logging_enable=True)
 
     #Upload the reports file
