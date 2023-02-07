@@ -1,0 +1,4 @@
+selenium
+pymsteams
+aiohttp
+slack_sdk
