@@ -12,7 +12,7 @@ options.add_argument("--headless")
 driver = webdriver.Firefox(executable_path=r'/opt/app-root/bin/geckodriver', options=options)
 driver = webdriver.Firefox(options=options)
 from slack_sdk import WebClient
-slack_token='xoxp-1181418301266-1187598082196-4620796761302-88c7e6294d5af8b8a5a2afa3eb5e0964'
+slack_token=''
 client = WebClient(token=slack_token)
 auth_test = client.auth_test()
 bot_user_id = auth_test["user_id"]
