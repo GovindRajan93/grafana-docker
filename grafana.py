@@ -19,7 +19,7 @@ client = WebClient(token=slack_token)
 auth_test = client.auth_test()
 bot_user_id = auth_test["user_id"]
 
-msg = pymsteams.connectorcard("https://steria.webhook.office.com/webhookb2/be345a42-3aa7-4dc1-9a2b-4c2b1048d608@8b87af7d-8647-4dc7-8df4-5f69a2011bb5/IncomingWebhook/e52c2c687eb94117b6b2b9ade114409b/165fecec-91ea-4764-88d8-9d9cd6d95b03")
+msg = pymsteams.connectorcard("webhook_link")
 
 print("Trying to login Grafana....")
 
